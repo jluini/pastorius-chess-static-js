@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- <link href="style.css" rel="stylesheet" /> -->
+</head>
+<body>
+
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+  
+  <script>
+    
+    function ChessState() {
+      
+    }
+    
+    function ChessGame() {
+      
+    }
+    
+    function ChessPosition(row, col) {
+      this.row = row;
+      this.col = col;
+    }
+    
+    ChessPosition.from = function(text) {
+      var c = 'abcdefgh'.indexOf(text[0]);
+      var r = parseInt(text[1]) - 1;
+      
+      return new this(r, c);
+    };
+    
+    ChessPosition.prototype.toString = function() {
+      var c = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'][this.col];
+      var r = this.row + 1;
+      
+      return `${c}${r}`;
+    };
+    
+    function ChessMove(from, to) {
+      this.from = from;
+      this.to = to;
+    }
+    
+    ChessMove.prototype.toString = function() {
+      // return 'movimiento loco';
+      return `${this.from}${this.to.toString()}`
+    };
+    
+    ChessGame.prototype.moves = function() {
+      var pos1 = ChessPosition.from('b1');
+      var pos2 = ChessPosition.from('c3');
+      
+      var move1 = new ChessMove(pos1, pos2);
+      
+      return [move1];
+    };
+    
+    var game = new ChessGame();
+    
+    game.moves().forEach((move, index) => {
+      console.log(index + 1, '::', move.toString());
+    });
+    
+  </script>
+</body>
+</html>
